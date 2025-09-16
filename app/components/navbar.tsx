@@ -1,38 +1,41 @@
-import { ChartLine } from "lucide-react";
-import { NavLink } from "react-router";
+import { ChartLine } from 'lucide-react';
+import { NavLink } from 'react-router';
+import { ThemeToggle } from './theme-toggle';
+import { cn } from '~/lib/utils';
 
 const Navbar = () => {
-  const base = "transition hover:text-blue-400";
-  const active = "text-blue-400 ";
+  const base = 'hover:text-primary text-muted-foreground font-medium';
+  const active = 'text-primary font-semibold';
 
   return (
-    <nav className="bg-primary sticky top-0 z-50 shadow-sm">
+    <nav className="bg-background sticky top-0 z-50 border-b">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
         {/* Logo */}
         <NavLink
           to="/"
-          className="flex items-center gap-2 text-lg font-bold text-blue-300"
+          className="text-primary flex items-center gap-2 text-lg font-bold"
         >
-          <ChartLine />
-          <span>Coin Dashboard</span>
+          <ChartLine className="h-5 w-5" />
+          <span className="hidden sm:block">Coin Dashboard</span>
         </NavLink>
 
         {/* Nav */}
         <div className="flex items-center gap-6">
-          <div className="space-x-4 text-sm text-gray-300">
+          <div className="space-x-6 text-sm">
             <NavLink
               to="/"
-              className={({ isActive }) => (isActive ? active : base)}
+              className={({ isActive }) => cn(base, isActive && active)}
             >
               Home
             </NavLink>
             <NavLink
               to="/about"
-              className={({ isActive }) => (isActive ? active : base)}
+              className={({ isActive }) => cn(base, isActive && active)}
             >
               About
             </NavLink>
           </div>
+          <ThemeToggle />
         </div>
       </div>
     </nav>
