@@ -52,7 +52,6 @@ export default function About() {
         <CardContent>
           <ul className="text-muted-foreground list-inside list-disc space-y-2">
             <li>📈 Live price tracking for top cryptocurrencies</li>
-            <li>⭐ Favorite coins for quick access</li>
             <li>📊 Charts and visualizations</li>
             <li>🌙 Light, dark, and system themes</li>
             <li>⚡ Built with React Router 7 + Tailwind + shadcn/ui</li>
