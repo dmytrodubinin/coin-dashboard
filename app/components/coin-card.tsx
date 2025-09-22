@@ -39,7 +39,9 @@ const CoinCard = ({ coin }: { coin: Coin }) => {
         >
           24h Change:{' '}
           <span className="font-semibold">
-            {coin.price_change_percentage_24h.toFixed(2)}%
+            {typeof coin.price_change_percentage_24h === 'number'
+              ? `${coin.price_change_percentage_24h.toFixed(2)}%`
+              : 'N/A'}
           </span>
         </p>
       </CardContent>

@@ -11,6 +11,7 @@ import type { Coin } from '~/types';
 import { useEffect, useState } from 'react';
 import { ChartLine } from 'lucide-react';
 import CoinCard from '~/components/coin-card';
+import LimitSelector from '~/components/limit-selector';
 
 const API_URL = import.meta.env.VITE_COINS_API_URL;
 
@@ -26,6 +27,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const [coins, setCoins] = useState<Coin[]>([]);
+  const [limit, setLimit] = useState(12);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -33,7 +35,7 @@ export default function Home() {
     const fetchCoins = async () => {
       try {
         const res = await fetch(
-          `${API_URL}&order=market_cap_desc&per_page=12&page=1&sparkline=false`,
+          `${API_URL}&order=market_cap_desc&per_page=${limit}&page=1&sparkline=false`,
         );
         if (!res.ok) throw new Error('Failed to fetch data');
         const data = await res.json();
@@ -46,7 +48,7 @@ export default function Home() {
     };
 
     fetchCoins();
-  }, []);
+  }, [limit]);
 
   return (
     <div className="mx-auto">
@@ -70,6 +72,8 @@ export default function Home() {
           </Card>
         </div>
       )}
+
+      <LimitSelector limit={limit} onLimitChange={setLimit} />
 
       {!loading && !error && (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
