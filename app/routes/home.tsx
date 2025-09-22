@@ -2,7 +2,6 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from '~/components/ui/card';
@@ -12,6 +11,7 @@ import { useEffect, useState } from 'react';
 import { ChartLine } from 'lucide-react';
 import CoinCard from '~/components/coin-card';
 import LimitSelector from '~/components/limit-selector';
+import FilterInput from '~/components/filter-input';
 
 const API_URL = import.meta.env.VITE_COINS_API_URL;
 
@@ -28,8 +28,15 @@ export function meta({}: Route.MetaArgs) {
 export default function Home() {
   const [coins, setCoins] = useState<Coin[]>([]);
   const [limit, setLimit] = useState(12);
+  const [filter, setFilter] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const filteredCoins = coins.filter(
+    (coin) =>
+      coin.name.toLowerCase().includes(filter.toLowerCase()) ||
+      coin.symbol.toLowerCase().includes(filter.toLowerCase()),
+  );
 
   useEffect(() => {
     const fetchCoins = async () => {
@@ -72,14 +79,20 @@ export default function Home() {
           </Card>
         </div>
       )}
-
-      <LimitSelector limit={limit} onLimitChange={setLimit} />
+      <div className="my-4 flex">
+        <div className="ml-auto flex gap-4">
+          <FilterInput filter={filter} onFilterChange={setFilter} />
+          <LimitSelector limit={limit} onLimitChange={setLimit} />
+        </div>
+      </div>
 
       {!loading && !error && (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {coins.map((coin) => (
-            <CoinCard key={coin.id} coin={coin} />
-          ))}
+          {filteredCoins.length > 0 ? (
+            filteredCoins.map((coin) => <CoinCard coin={coin} key={coin.id} />)
+          ) : (
+            <p>No coins match your filter.</p>
+          )}
         </div>
       )}
     </div>
