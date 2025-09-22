@@ -79,12 +79,6 @@ export default function Home() {
 
   return (
     <div className="mx-auto">
-      <h1 className="mb-6 text-center text-4xl font-bold tracking-tight">
-        <span className="flex items-center justify-center">
-          <ChartLine className="mr-2 h-8 w-8" />
-          Coin Dashboard
-        </span>
-      </h1>
       {loading && <p className="text-center text-lg">Loading...</p>}
       {error && (
         <div className="flex h-[calc(100vh-10rem)] items-center justify-center">
