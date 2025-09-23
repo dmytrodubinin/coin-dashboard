@@ -58,6 +58,6 @@ npm run preview
 
 # 📖 Styling
 
-	•	Tailwind CSS is preconfigured.
-	•	shadcn/ui components for consistent and accessible design.
-	•	Customize or extend as needed.
+-	Tailwind CSS is preconfigured.
+-	shadcn/ui components for consistent and accessible design.
+-	Customize or extend as needed.
