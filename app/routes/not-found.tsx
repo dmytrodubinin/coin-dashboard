@@ -1,5 +1,16 @@
 import { Link } from 'react-router';
 import { Button } from '~/components/ui/button';
+import type { Route } from './+types/not-found';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Page Not Found' },
+    {
+      name: 'description',
+      content: 'The page you are looking for does not exist',
+    },
+  ];
+}
 
 const NotFoundPage = () => {
   return (

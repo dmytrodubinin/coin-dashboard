@@ -6,6 +6,18 @@ import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card';
 import { Skeleton } from '~/components/ui/skeleton';
 import type { CoinDetail } from '~/types';
+import type { Route } from './+types/coin-details';
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: 'Coin Details' },
+    {
+      name: 'description',
+      content:
+        'Detailed crypto information and statistics about a specific coin',
+    },
+  ];
+}
 
 const CoinDetails = () => {
   const { id } = useParams();
