@@ -52,3 +52,22 @@ export type CoinDetail = {
   categories: string[];
   last_updated: string;
 };
+
+export type ChartDataItem = {
+  x: number;
+  y: number;
+};
+
+export type ChartDataset = {
+  label: string;
+  data: ChartDataItem[];
+  fill: boolean;
+  borderColor: string;
+  backgroundColor: string;
+  pointRadius: number;
+  tension: number;
+};
+
+export type ChartData = {
+  datasets: ChartDataset[];
+};

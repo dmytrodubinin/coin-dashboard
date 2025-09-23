@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router';
+import CoinChart from '~/components/coin-chart';
 import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
 import { Button } from '~/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card';
@@ -72,7 +73,7 @@ const CoinDetails = () => {
               </p>
             </div>
 
-            <div className="grid gap-2 text-sm sm:grid-cols-2">
+            <div className="grid gap-2 text-sm font-bold sm:grid-cols-2">
               <p>Rank: #{coin.market_cap_rank}</p>
               <p>
                 Current Price: $
@@ -112,6 +113,8 @@ const CoinDetails = () => {
                 Last Updated: {new Date(coin.last_updated).toLocaleString()}
               </p>
             </div>
+
+            <CoinChart coinId={coin.id} />
 
             <div className="space-y-2">
               {coin.links.homepage[0] && (
