@@ -8,7 +8,6 @@ import {
 import type { Route } from './+types/home';
 import type { Coin } from '~/types';
 import { useEffect, useState } from 'react';
-import { ChartLine } from 'lucide-react';
 import CoinCard from '~/components/coin-card';
 import LimitSelector from '~/components/limit-selector';
 import FilterInput from '~/components/filter-input';
@@ -94,7 +93,7 @@ export default function Home() {
         </div>
       )}
       <div className="my-4 flex w-full justify-end">
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4 md:flex-nowrap">
           <FilterInput filter={filter} onFilterChange={setFilter} />
           <LimitSelector limit={limit} onLimitChange={setLimit} />
           <SortSelector sortBy={sortBy} onSortChange={setSortBy} />
