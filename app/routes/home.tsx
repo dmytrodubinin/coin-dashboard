@@ -31,7 +31,7 @@ export default function Home() {
   const [filter, setFilter] = useState('');
   const [sortBy, setSortBy] = useState('market_cap_desc');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const filteredCoins = coins
     .filter(
@@ -67,7 +67,11 @@ export default function Home() {
         const data = await res.json();
         setCoins(data);
       } catch (err) {
-        setError(err.message);
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('An unknown error occurred');
+        }
       } finally {
         setLoading(false);
       }
