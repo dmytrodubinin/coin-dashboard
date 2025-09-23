@@ -12,6 +12,7 @@ import CoinCard from '~/components/coin-card';
 import LimitSelector from '~/components/limit-selector';
 import FilterInput from '~/components/filter-input';
 import SortSelector from '~/components/sort-selector';
+import { Skeleton } from '~/components/ui/skeleton';
 
 const API_URL = import.meta.env.VITE_COINS_API_URL;
 
@@ -82,7 +83,6 @@ export default function Home() {
 
   return (
     <div className="mx-auto">
-      {loading && <p className="text-center text-lg">Loading...</p>}
       {error && (
         <div className="flex h-[calc(100vh-10rem)] items-center justify-center">
           <Card className="w-full max-w-md text-center">
@@ -96,6 +96,7 @@ export default function Home() {
           </Card>
         </div>
       )}
+
       <div className="my-4 flex w-full justify-end">
         <div className="flex flex-wrap gap-4 md:flex-nowrap">
           <FilterInput filter={filter} onFilterChange={setFilter} />
@@ -103,6 +104,26 @@ export default function Home() {
           <SortSelector sortBy={sortBy} onSortChange={setSortBy} />
         </div>
       </div>
+
+      {loading && !error && (
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {Array.from({ length: limit }).map((_, i) => (
+            <Card key={i} className="p-4">
+              <div className="flex items-center gap-4">
+                <Skeleton className="h-12 w-12 rounded-full" />
+                <div className="flex-1 space-y-2">
+                  <Skeleton className="h-4 w-3/4" />
+                  <Skeleton className="h-3 w-1/2" />
+                </div>
+              </div>
+              <div className="mt-4 space-y-2">
+                <Skeleton className="h-3 w-full" />
+                <Skeleton className="h-3 w-2/3" />
+              </div>
+            </Card>
+          ))}
+        </div>
+      )}
 
       {!loading && !error && (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
