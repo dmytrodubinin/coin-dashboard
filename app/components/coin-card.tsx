@@ -6,10 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from '~/components/ui/card';
-import type { Coin } from '~/types';
+import type { CoinListItem } from '~/types';
 import { Link } from 'react-router';
 
-const CoinCard = ({ coin }: { coin: Coin }) => {
+const CoinCard = ({ coin }: { coin: CoinListItem }) => {
   return (
     <Link to={`/coin/${coin.id}`}>
       <Card

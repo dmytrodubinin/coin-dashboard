@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from '~/components/ui/card';
 import type { Route } from './+types/home';
-import type { Coin } from '~/types';
+import type { CoinListItem } from '~/types';
 import { useEffect, useState } from 'react';
 import CoinCard from '~/components/coin-card';
 import LimitSelector from '~/components/limit-selector';
@@ -26,7 +26,7 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  const [coins, setCoins] = useState<Coin[]>([]);
+  const [coins, setCoins] = useState<CoinListItem[]>([]);
   const [limit, setLimit] = useState(12);
   const [filter, setFilter] = useState('');
   const [sortBy, setSortBy] = useState('market_cap_desc');
