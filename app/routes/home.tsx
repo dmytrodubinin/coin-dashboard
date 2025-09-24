@@ -62,7 +62,7 @@ export default function Home() {
     const fetchCoins = async () => {
       try {
         const res = await fetch(
-          `${API_URL}&order=market_cap_desc&per_page=${limit}&page=1&sparkline=false`,
+          `${API_URL}/markets?vs_currency=usd&order=market_cap_desc&per_page=${limit}&page=1&sparkline=false`,
         );
         if (!res.ok) throw new Error('Failed to fetch data');
         const data = await res.json();

@@ -8,6 +8,8 @@ import { Skeleton } from '~/components/ui/skeleton';
 import type { CoinDetail } from '~/types';
 import type { Route } from './+types/coin-details';
 
+const API_URL = import.meta.env.VITE_COINS_API_URL;
+
 export function meta({}: Route.MetaArgs) {
   return [
     { title: 'Coin Details' },
@@ -28,7 +30,7 @@ const CoinDetails = () => {
   useEffect(() => {
     const fetchCoin = async () => {
       try {
-        const res = await fetch(`https://api.coingecko.com/api/v3/coins/${id}`);
+        const res = await fetch(`${API_URL}/${id}`);
         if (!res.ok) throw new Error('Failed to fetch coin data');
         const data = await res.json();
         setCoin(data);
